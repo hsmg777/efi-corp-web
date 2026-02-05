@@ -1,0 +1,37 @@
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: eficorp-backend
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./backend:/app
+    restart: always
+    networks:
+      - eficorp-network
+
+  eficorp_dev:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: eficorp-frontend
+    working_dir: /app
+    volumes:
+      - ./frontend:/app:cached
+      - /app/node_modules
+    ports:
+      - "5173:5173"
+    environment:
+      - NODE_ENV=development
+    command: [ "npm", "run", "dev", "--", "--host" ]
+    depends_on:
+      - backend
+    networks:
+      - eficorp-network
+networks:
+  eficorp-network:
+    driver: bridge
