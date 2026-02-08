@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
     FileText,
     Users,
@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Seo } from "../components/Seo";
 
 const BACKGROUND_IMAGES = [
     "/images/iessback.png",
@@ -21,7 +22,12 @@ const BACKGROUND_IMAGES = [
 ];
 
 export function Servicios() {
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const siteUrl = origin || undefined;
+
     const [currentImage, setCurrentImage] = useState(0);
+    const WHATSAPP_NUMBER = "593979248868";
+    const { hash } = useLocation();
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -29,6 +35,15 @@ export function Servicios() {
         }, 5000);
         return () => clearInterval(timer);
     }, []);
+
+    useEffect(() => {
+        if (!hash) return;
+        const id = hash.replace("#", "");
+        const target = document.getElementById(id);
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }, [hash]);
     const servicios = [
         {
             id: "sri",
@@ -152,6 +167,20 @@ export function Servicios() {
 
     return (
         <div className="pt-20">
+            <Seo
+                title="Servicios Contables Integrales | EFICORP-PCGerente"
+                description="Servicios contables integrales en Ecuador: SRI, Ministerio del Trabajo, IESS, GAD Municipales, Superintendencia de Compañías y firmas electrónicas."
+                keywords="servicios contables Ecuador, SRI, IESS, Ministerio del Trabajo, GAD, Superintendencia de Compañías, firmas electrónicas, trámites empresariales, asesoría contable"
+                imagePath="/images/us.jpg"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    name: "Servicios Contables Integrales",
+                    description:
+                        "Gestión contable y legal ante SRI, IESS, Ministerio del Trabajo, GAD y Superintendencia de Compañías.",
+                    url: siteUrl ? `${siteUrl}/servicios` : undefined,
+                }}
+            />
             {/* Hero Section */}
             <section className="relative h-[60vh] min-h-[450px] flex items-center overflow-hidden">
                 {/* Background Carousel */}
@@ -209,7 +238,8 @@ export function Servicios() {
                             return (
                                 <div
                                     key={servicio.id}
-                                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-8"
+                                    id={servicio.id}
+                                    className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden border-l-8 scroll-mt-28"
                                     style={{ borderColor: servicio.borderColor.replace('border-', '') }}
                                 >
                                     <div className="p-8 md:p-10">
@@ -243,13 +273,17 @@ export function Servicios() {
                                         </div>
                                     </div>
                                     <div className={`${servicio.bgColor} px-8 md:px-10 py-4 border-t ${servicio.borderColor} border-opacity-20`}>
-                                        <Link
-                                            to="/contacto"
+                                        <a
+                                            href={`https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+                                                `Hola, estoy interesado en los servicios para ${servicio.title}`
+                                            )}`}
+                                            target="_blank"
+                                            rel="noreferrer"
                                             className={`inline-flex items-center ${servicio.textColor} hover:underline font-semibold`}
                                         >
                                             Solicitar asesoría sobre estos servicios
                                             <ChevronRight size={20} className="ml-1" />
-                                        </Link>
+                                        </a>
                                     </div>
                                 </div>
                             );
@@ -311,13 +345,13 @@ export function Servicios() {
                     <p className="text-xl text-white/90 mb-8 max-w-3xl mx-auto">
                         Contáctanos hoy y descubre cómo podemos simplificar la gestión de tu empresa.
                     </p>
-                    <Link
-                        to="/contacto"
+                    <a
+                        href="tel:+593979248868"
                         className="inline-flex items-center px-8 py-4 bg-white text-[#10b981] rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
                     >
                         <Phone className="mr-2" size={20} />
-                        Solicitar Asesoría Gratuita
-                    </Link>
+                        Llamar ahora
+                    </a>
                 </div>
             </section>
         </div>

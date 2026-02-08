@@ -5,5 +5,4 @@ class MailSchema(Schema):
     empresa = fields.String(allow_none=True)
     telefono = fields.String(required=True)
     email = fields.Email(required=True)
-    producto_interes = fields.String(allow_none=True)
-    mensaje = fields.String(allow_none=True)
+    mensaje = fields.String(required=True)

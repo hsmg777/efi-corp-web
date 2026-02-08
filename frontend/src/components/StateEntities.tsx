@@ -59,7 +59,7 @@ const entities = [
         ]
     },
     {
-        id: "super",
+        id: "supercias",
         title: "Superintendencia de Compañías",
         image: "/images/super.jpeg",
         icon: TrendingUp,
@@ -172,7 +172,7 @@ export function StateEntities() {
                                 </div>
 
                                 <Link
-                                    to="/servicios"
+                                    to={`/servicios#${entity.id}`}
                                     className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-400 border border-gray-100 shadow-sm transition-all group-hover:bg-[#10b981] group-hover:text-white group-hover:border-[#10b981] active:scale-95"
                                     aria-label={`Ver más sobre ${entity.title}`}
                                 >

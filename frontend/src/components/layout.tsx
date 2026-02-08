@@ -26,19 +26,19 @@ export function Layout() {
             {/* NAVBAR */}
             <nav className="fixed top-0 w-full z-50 bg-[#061d1d]/95 backdrop-blur-md border-b border-white/5 shadow-lg">
                 <div className="container mx-auto px-4">
-                    <div className="flex justify-between items-center h-20">
+                    <div className="flex justify-between items-center h-24">
                         {/* Logo */}
                         <Link to="/" className="flex items-center space-x-2 group">
-                            <img src="/images/logo.png" alt="Logo" className="h-24" />
+                            <img src="/images/logo.png" alt="EFICORP-PCGerente" className="h-28" />
                         </Link>
 
                         {/* Desktop Navigation */}
-                        <div className="hidden md:flex items-center space-x-8">
-                            <Link to="/" className="text-white/90 hover:text-[#10b981] font-medium transition-colors">Inicio</Link>
-                            <Link to="/servicios" className="text-white/90 hover:text-[#10b981] font-medium transition-colors">Servicios</Link>
-                            <Link to="/sistema" className="text-white/90 hover:text-[#10b981] font-medium transition-colors">PC-Gerente</Link>
-                            <Link to="/nosotros" className="text-white/90 hover:text-[#10b981] font-medium transition-colors">Nosotros</Link>
-                            <Link to="/contacto" className="inline-flex items-center px-6 py-2.5 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-all duration-300 shadow-lg shadow-[#10b981]/20 hover:scale-105 active:scale-95 font-semibold">
+                        <div className="hidden md:flex items-center space-x-10">
+                            <Link to="/" className="text-lg text-white/90 hover:text-[#10b981] font-medium transition-colors">Inicio</Link>
+                            <Link to="/servicios" className="text-lg text-white/90 hover:text-[#10b981] font-medium transition-colors">Servicios</Link>
+                            <Link to="/sistema" className="text-lg text-white/90 hover:text-[#10b981] font-medium transition-colors">PC-Gerente</Link>
+                            <Link to="/nosotros" className="text-lg text-white/90 hover:text-[#10b981] font-medium transition-colors">Nosotros</Link>
+                            <Link to="/contacto" className="inline-flex items-center px-8 py-3 bg-[#10b981] text-white rounded-lg hover:bg-[#059669] transition-all duration-300 shadow-lg shadow-[#10b981]/20 hover:scale-105 active:scale-95 font-semibold text-base">
                                 Contáctanos
                             </Link>
                         </div>
@@ -47,9 +47,9 @@ export function Layout() {
                         <div className="md:hidden">
                             <button
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                                className="p-2 text-white/90 hover:text-[#10b981] transition-colors"
+                                className="p-3 text-white/90 hover:text-[#10b981] transition-colors"
                             >
-                                {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
+                                {isMenuOpen ? <X size={32} /> : <Menu size={32} />}
                             </button>
                         </div>
                     </div>
@@ -57,12 +57,12 @@ export function Layout() {
 
                 {/* Mobile menu */}
                 {isMenuOpen && (
-                    <div className="md:hidden absolute top-20 left-0 w-full bg-[#061d1d] border-b border-white/5 shadow-xl py-6 px-4 space-y-4 animate-in slide-in-from-top duration-300">
-                        <Link to="/" onClick={() => setIsMenuOpen(false)} className="block text-lg font-medium text-white/80 hover:text-[#10b981]">Inicio</Link>
-                        <Link to="/servicios" onClick={() => setIsMenuOpen(false)} className="block text-lg font-medium text-white/80 hover:text-[#10b981]">Servicios</Link>
-                        <Link to="/sistema" onClick={() => setIsMenuOpen(false)} className="block text-lg font-medium text-white/80 hover:text-[#10b981]">PC-Gerente</Link>
-                        <Link to="/nosotros" onClick={() => setIsMenuOpen(false)} className="block text-lg font-medium text-white/80 hover:text-[#10b981]">Nosotros</Link>
-                        <Link to="/contacto" onClick={() => setIsMenuOpen(false)} className="block w-full py-4 bg-[#10b981] text-white text-center rounded-xl font-bold">
+                    <div className="md:hidden absolute top-24 left-0 w-full bg-[#061d1d] border-b border-white/5 shadow-xl py-6 px-4 space-y-4 animate-in slide-in-from-top duration-300">
+                        <Link to="/" onClick={() => setIsMenuOpen(false)} className="block text-xl font-medium text-white/80 hover:text-[#10b981]">Inicio</Link>
+                        <Link to="/servicios" onClick={() => setIsMenuOpen(false)} className="block text-xl font-medium text-white/80 hover:text-[#10b981]">Servicios</Link>
+                        <Link to="/sistema" onClick={() => setIsMenuOpen(false)} className="block text-xl font-medium text-white/80 hover:text-[#10b981]">PC-Gerente</Link>
+                        <Link to="/nosotros" onClick={() => setIsMenuOpen(false)} className="block text-xl font-medium text-white/80 hover:text-[#10b981]">Nosotros</Link>
+                        <Link to="/contacto" onClick={() => setIsMenuOpen(false)} className="block w-full py-4 bg-[#10b981] text-white text-center rounded-xl font-bold text-lg">
                             Contáctanos
                         </Link>
                     </div>
@@ -81,17 +81,16 @@ export function Layout() {
                         {/* Branding & Social */}
                         <div className="space-y-6">
                             <Link to="/" className="flex items-center space-x-2">
-                                <img src="/images/logo.png" alt="Logo" className="h-24" />
+                                <img src="/images/logo.png" alt="EFICORP-PCGerente" className="h-24" />
                             </Link>
                             <p className="text-gray-400 leading-relaxed">
                                 Expertos en cumplimiento legal, contables y tecnológicos en el Ecuador.
                                 Más de 15 años simplificando la gestión empresarial.
                             </p>
                             <div className="flex space-x-4">
-                                <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Facebook size={20} /></a>
-                                <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Instagram size={20} /></a>
-                                <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Linkedin size={20} /></a>
-                                <a href="#" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Twitter size={20} /></a>
+                                <a href="https://www.facebook.com/share/1HkUid1oYo/?mibextid=wwXIfr" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Facebook size={20} /></a>
+                                <a href="https://www.instagram.com/eficorpacc?igsh=MWEzcXNoaTBkaTliOQ%3D%3D&utm_source=qr" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Instagram size={20} /></a>
+                                <a href="https://www.linkedin.com/in/eficorp-accounting-9904b03aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" className="w-10 h-10 bg-white/5 rounded-lg flex items-center justify-center hover:bg-[#10b981] hover:text-white transition-all duration-300"><Linkedin size={20} /></a>
                             </div>
                         </div>
 
@@ -125,15 +124,15 @@ export function Layout() {
                             <ul className="space-y-4">
                                 <li className="flex items-start space-x-3">
                                     <MapPin size={20} className="text-[#10b981] flex-shrink-0 mt-1" />
-                                    <span>Av. República del Salvador N36-84 y NNUU, Quito - Ecuador</span>
+                                    <span>Av. Clemente Ponce y Piedrahita Edificio fénix P2, Oficina A-204  Quito, Ecuador</span>
                                 </li>
                                 <li className="flex items-center space-x-3">
                                     <Phone size={20} className="text-[#10b981] flex-shrink-0" />
-                                    <span>+593 99 400 5006</span>
+                                    <span>+593 97 924 8868</span>
                                 </li>
                                 <li className="flex items-center space-x-3">
                                     <Mail size={20} className="text-[#10b981] flex-shrink-0" />
-                                    <span>info@eficorp.com.ec</span>
+                                    <span> eficorp.contabilidad@gmail.com</span>
                                 </li>
                             </ul>
                         </div>

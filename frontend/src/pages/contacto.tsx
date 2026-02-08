@@ -8,11 +8,14 @@ import {
     Facebook,
     Instagram,
     Linkedin,
-    Twitter,
-    MessageCircle
+    Twitter
 } from "lucide-react";
+import { Seo } from "../components/Seo";
 
 export function Contacto() {
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const siteUrl = origin || undefined;
+
     const [formData, setFormData] = useState({
         nombre: "",
         empresa: "",
@@ -24,14 +27,28 @@ export function Contacto() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitMessage, setSubmitMessage] = useState("");
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setIsSubmitting(true);
+        setSubmitMessage("");
 
-        // Simulación de envío de formulario
-        setTimeout(() => {
-            setSubmitMessage("¡Gracias por contactarnos! Responderemos tu consulta en las próximas 24 horas.");
-            setIsSubmitting(false);
+        const apiBase = (import.meta.env.VITE_API_URL as string | undefined) ?? "";
+        const apiUrl = `${apiBase.replace(/\/$/, "")}/send-email`;
+
+        try {
+            const response = await fetch(apiUrl, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                throw new Error("No se pudo enviar el mensaje.");
+            }
+
+            setSubmitMessage("Gracias por contactarnos! Responderemos tu consulta en las proximas 24 horas.");
             setFormData({
                 nombre: "",
                 empresa: "",
@@ -39,11 +56,14 @@ export function Contacto() {
                 telefono: "",
                 mensaje: ""
             });
-
+        } catch (error) {
+            setSubmitMessage("Ocurrio un error al enviar tu mensaje. Intentalo de nuevo mas tarde.");
+        } finally {
+            setIsSubmitting(false);
             setTimeout(() => {
                 setSubmitMessage("");
             }, 5000);
-        }, 1500);
+        }
     };
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -55,6 +75,20 @@ export function Contacto() {
 
     return (
         <div className="pt-20">
+            <Seo
+                title="Contacto | EFICORP-PCGerente"
+                description="Contáctanos para asesoría contable, tributaria y laboral en Ecuador. Atención en Quito y soporte humano rápido."
+                keywords="contacto EFICORP, asesoría contable Quito, servicios contables Ecuador, soporte PC-Gerente"
+                imagePath="/images/us.jpg"
+                structuredData={{
+                    "@context": "https://schema.org",
+                    "@type": "ContactPage",
+                    name: "Contacto",
+                    description:
+                        "Formulario de contacto y datos para asesoría contable, tributaria y laboral en Ecuador.",
+                    url: siteUrl ? `${siteUrl}/contacto` : undefined,
+                }}
+            />
             {/* Hero Section */}
             <section className="bg-gradient-to-br from-[#0f172a] via-[#1e3a8a] to-[#0f172a] py-20">
                 <div className="container mx-auto px-4">
@@ -90,8 +124,8 @@ export function Contacto() {
                                     <div>
                                         <h3 className="font-bold text-[#0f172a] mb-1">Teléfono</h3>
                                         <p className="text-gray-600 mb-2">Lunes a Viernes: 8:00 AM - 6:00 PM</p>
-                                        <a href="tel:+593999999999" className="text-[#10b981] hover:text-[#059669] font-semibold">
-                                            +593 99 999 9999
+                                        <a href="tel:+593979248868" className="text-[#10b981] hover:text-[#059669] font-semibold">
+                                            +593 97 924 8868
                                         </a>
                                     </div>
                                 </div>
@@ -104,22 +138,8 @@ export function Contacto() {
                                     <div>
                                         <h3 className="font-bold text-[#0f172a] mb-1">Correo Electrónico</h3>
                                         <p className="text-gray-600 mb-2">Respuesta en 24 horas o menos</p>
-                                        <a href="mailto:info@eficorp.ec" className="text-[#1e3a8a] hover:text-[#1e40af] font-semibold">
-                                            info@eficorp.ec
-                                        </a>
-                                    </div>
-                                </div>
-
-                                {/* WhatsApp */}
-                                <div className="flex items-start space-x-4 p-6 bg-white rounded-xl shadow-md hover:shadow-lg transition-all">
-                                    <div className="w-12 h-12 bg-[#25D366]/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                                        <MessageCircle className="text-[#25D366]" size={24} />
-                                    </div>
-                                    <div>
-                                        <h3 className="font-bold text-[#0f172a] mb-1">WhatsApp</h3>
-                                        <p className="text-gray-600 mb-2">Atención inmediata por chat</p>
-                                        <a href="https://wa.me/593999999999" className="text-[#25D366] hover:opacity-80 font-semibold" target="_blank" rel="noopener noreferrer">
-                                            +593 99 999 9999
+                                        <a href="mailto:eficorp.contabilidad@gmail.com" className="text-[#1e3a8a] hover:text-[#1e40af] font-semibold">
+                                            eficorp.contabilidad@gmail.com
                                         </a>
                                     </div>
                                 </div>
@@ -132,8 +152,8 @@ export function Contacto() {
                                     <div>
                                         <h3 className="font-bold text-[#0f172a] mb-1">Oficina Principal</h3>
                                         <p className="text-gray-600">
-                                            Av. República del Salvador N36-84 y Naciones Unidas<br />
-                                            Edificio Corporativo<br />
+                                            Av. Clemente Ponce y Piedrahita<br />
+                                            Edificio fénix P2, Oficina A-204<br />
                                             Quito, Ecuador
                                         </p>
                                     </div>
@@ -147,8 +167,8 @@ export function Contacto() {
                                     <div>
                                         <h3 className="font-bold text-[#0f172a] mb-1">Horario de Atención</h3>
                                         <p className="text-gray-600">
-                                            Lunes a Viernes: 8:00 AM - 6:00 PM<br />
-                                            Sábados: 9:00 AM - 1:00 PM<br />
+                                            Lunes a Viernes: 8:00 AM - 5:00 PM<br />
+                                            Sábados: Cerrado<br />
                                             Domingos: Cerrado
                                         </p>
                                     </div>
@@ -157,35 +177,28 @@ export function Contacto() {
 
                             {/* Redes Sociales */}
                             <div className="mt-8">
-                                <h3 className="font-bold text-[#0f172a] mb-4">Síguenos en Redes Sociales</h3>
-                                <div className="flex space-x-4">
+                                <h3 className="justify-center font-bold text-[#0f172a] mb-4">Síguenos en Redes Sociales</h3>
+                                <div className="flex space-x-4 justify-center lg:justify-start">
                                     <a
-                                        href="#"
+                                        href="https://www.facebook.com/share/1HkUid1oYo/?mibextid=wwXIfr" target="_blank"
                                         className="w-12 h-12 bg-[#1877F2] hover:bg-[#166FE5] rounded-lg flex items-center justify-center transition-all shadow-md hover:shadow-lg"
                                         aria-label="Facebook"
                                     >
                                         <Facebook className="text-white" size={24} />
                                     </a>
                                     <a
-                                        href="#"
+                                        href="https://www.instagram.com/eficorpacc?igsh=MWEzcXNoaTBkaTliOQ%3D%3D&utm_source=qr" target="_blank"
                                         className="w-12 h-12 bg-gradient-to-br from-[#833AB4] via-[#FD1D1D] to-[#F77737] hover:opacity-90 rounded-lg flex items-center justify-center transition-all shadow-md hover:shadow-lg"
                                         aria-label="Instagram"
                                     >
                                         <Instagram className="text-white" size={24} />
                                     </a>
                                     <a
-                                        href="#"
+                                        href="https://www.linkedin.com/in/eficorp-accounting-9904b03aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app" target="_blank"
                                         className="w-12 h-12 bg-[#0A66C2] hover:bg-[#004182] rounded-lg flex items-center justify-center transition-all shadow-md hover:shadow-lg"
                                         aria-label="LinkedIn"
                                     >
                                         <Linkedin className="text-white" size={24} />
-                                    </a>
-                                    <a
-                                        href="#"
-                                        className="w-12 h-12 bg-[#1DA1F2] hover:bg-[#1A91DA] rounded-lg flex items-center justify-center transition-all shadow-md hover:shadow-lg"
-                                        aria-label="Twitter"
-                                    >
-                                        <Twitter className="text-white" size={24} />
                                     </a>
                                 </div>
                             </div>
@@ -317,7 +330,7 @@ export function Contacto() {
                     <div className="rounded-2xl overflow-hidden shadow-2xl">
                         {/* Mapa incrustado de Google Maps (Quito, Ecuador - ubicación aproximada) */}
                         <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d63821.84323172847!2d-78.52495464999999!3d-0.1806532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x91d59a4002427c9f%3A0x2999363f246e0b0!2sQuito%2C%20Ecuador!5e0!3m2!1ses!2sec!4v1234567890"
+                            src="https://www.google.com/maps/embed?pb=!1m17!1m12!1m3!1d993.6104105459715!2d-78.50078098585418!3d-0.21220300124131522!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m2!1m1!2zMMKwMTInNDQuMCJTIDc4wrAzMCcwMS4zIlc!5e0!3m2!1sen!2sus!4v1770482911172!5m2!1sen!2sus"
                             width="100%"
                             height="450"
                             style={{ border: 0 }}
@@ -340,11 +353,11 @@ export function Contacto() {
                         Llámanos ahora y habla directamente con uno de nuestros especialistas.
                     </p>
                     <a
-                        href="tel:+593999999999"
+                        href="tel:+593979248868"
                         className="inline-flex items-center px-8 py-4 bg-white text-[#10b981] rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
                     >
                         <Phone className="mr-2" size={20} />
-                        +593 99 999 9999
+                        +593 97 924 8868
                     </a>
                 </div>
             </section>

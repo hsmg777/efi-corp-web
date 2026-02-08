@@ -10,10 +10,58 @@ import { Hero } from "../components/Hero";
 import { StateEntities } from "../components/StateEntities";
 import { PCGerenteSection } from "../components/PCGerenteSection";
 import { motion } from "framer-motion";
+import { Seo } from "../components/Seo";
 
 export function Home() {
+    const origin = typeof window !== "undefined" ? window.location.origin : "";
+    const siteUrl = origin || undefined;
+    const imageUrl = siteUrl ? `${siteUrl}/images/us.jpg` : "/images/us.jpg";
+
+    const structuredData = [
+        {
+            "@context": "https://schema.org",
+            "@type": "AccountingService",
+            name: "EFICORP-PCGerente",
+            url: siteUrl,
+            logo: imageUrl,
+            image: imageUrl,
+            description:
+                "Servicios contables, tributarios y laborales en Ecuador. Gestión ante SRI, IESS, Ministerio del Trabajo, GAD y Superintendencia de Compañías.",
+            telephone: "+593 97 924 8868",
+            email: "eficorp.contabilidad@gmail.com",
+            areaServed: "EC",
+            address: {
+                "@type": "PostalAddress",
+                streetAddress: "Av. Clemente Ponce y Piedrahita, Edificio Fénix P2, Oficina A-204",
+                addressLocality: "Quito",
+                addressRegion: "Pichincha",
+                addressCountry: "EC",
+            },
+            sameAs: [
+                "https://www.facebook.com/share/1HkUid1oYo/?mibextid=wwXIfr",
+                "https://www.instagram.com/eficorpacc?igsh=MWEzcXNoaTBkaTliOQ%3D%3D&utm_source=qr",
+                "https://www.linkedin.com/in/eficorp-accounting-9904b03aa?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app",
+            ],
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            name: "EFICORP-PCGerente",
+            url: siteUrl,
+            description:
+                "Servicios contables y cumplimiento legal en Ecuador con soporte humano y tecnología PC-Gerente.",
+        },
+    ];
+
     return (
         <div className="pt-20">
+            <Seo
+                title="EFICORP-PCGerente | Servicios Contables en Ecuador"
+                description="Servicios contables, tributarios y laborales en Ecuador. Asesoría experta ante SRI, IESS, Ministerio del Trabajo, GAD y Superintendencia."
+                keywords="servicios contables Ecuador, asesoría tributaria, SRI, IESS, Ministerio del Trabajo, GAD, Superintendencia de Compañías, PC-Gerente, software contable, cumplimiento legal, contabilidad Quito"
+                imagePath="/images/us.jpg"
+                structuredData={structuredData}
+            />
             <Hero />
 
             {/* PRESENTACIÓN EFICORP-PCGerente */}
@@ -195,7 +243,7 @@ export function Home() {
                             className="inline-flex items-center justify-center px-8 py-4 bg-white text-[#10b981] rounded-lg hover:bg-gray-50 transition-all duration-300 shadow-xl hover:shadow-2xl hover:scale-105"
                         >
                             <Phone className="mr-2" size={20} />
-                            Solicitar Asesoría Gratuita
+                            Llamar ahora!
                         </a>
                     </div>
                 </div>
