@@ -81,49 +81,49 @@ export function Hero() {
                             className="relative z-20 w-72 h-72 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl p-1 bg-gradient-to-tr from-[#10b981] to-[#f9d634]"
                         >
                             <img
-                                src="/images/hero_central.jpeg"
+                                src="/images/us.jpg"
                                 alt="Professional Consultant"
                                 className="w-full h-full object-cover rounded-full"
                             />
                         </motion.div>
 
-                        {/* Floating Cards (Square with rounded corners) */}
-                        {/* SRI Card */}
+                        {/* Floating Cards (Square layout) */}
+                        {/* SRI Card - Top Right */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1 }}
-                            className="absolute top-16 right-24 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20"
+                            className="absolute top-16 right-16 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20"
                         >
                             <img src="/images/sri.png" alt="SRI" className="w-full h-full object-cover rounded-xl" />
                         </motion.div>
 
-                        {/* MDT Card */}
+                        {/* MDT Card - Bottom Right */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.2 }}
-                            className="absolute top-1/2 right-8 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl -rotate-6 hover:rotate-0 transition-transform duration-300 border border-white/20"
+                            className="absolute bottom-16 right-16 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl -rotate-6 hover:rotate-0 transition-transform duration-300 border border-white/20"
                         >
                             <img src="/images/mdt.png" alt="MDT" className="w-full h-full object-cover rounded-xl" />
                         </motion.div>
 
-                        {/* IESS Card */}
+                        {/* IESS Card - Top Left */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.4 }}
-                            className="absolute top-1/4 left-16 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl rotate-12 hover:rotate-0 transition-transform duration-300 border border-white/20"
+                            className="absolute top-16 left-16 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl rotate-12 hover:rotate-0 transition-transform duration-300 border border-white/20"
                         >
                             <img src="/images/iess.png" alt="IESS" className="w-full h-full object-cover rounded-xl" />
                         </motion.div>
 
-                        {/* Supercias Card */}
+                        {/* Supercias Card - Bottom Left */}
                         <motion.div
                             initial={{ opacity: 0, scale: 0.5 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ delay: 1.6 }}
-                            className="absolute bottom-12 left-24 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl -rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20"
+                            className="absolute bottom-16 left-16 z-30 w-32 h-32 bg-white rounded-2xl p-1 shadow-2xl -rotate-3 hover:rotate-0 transition-transform duration-300 border border-white/20"
                         >
                             <img src="/images/super.jpeg" alt="Supercias" className="w-full h-full object-cover rounded-xl" />
                         </motion.div>

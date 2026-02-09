@@ -271,7 +271,7 @@ export function Sistema() {
                                     <Globe className="text-white" size={24} />
                                 </div>
                                 <div>
-                                    <h3 className="text-2xl font-bold text-[#0f172a] mb-2">Hecho en Ecuador, para Ecuador</h3>
+                                    <h3 className="text-2xl font-bold text-[#0f172a] mb-2">Hecho en Ecuador</h3>
                                     <p className="text-gray-700 leading-relaxed">
                                         Diseñado específicamente para cumplir con todas las normativas del SRI y las necesidades
                                         reales de las empresas ecuatorianas. Actualizaciones constantes según cambios regulatorios.
